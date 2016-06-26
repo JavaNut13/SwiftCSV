@@ -8,18 +8,22 @@
 
 extension CSV {
     /// List of dictionaries that contains the CSV data
-    public var rows: [[String: String]] {
+    public var rows: [[String: String]]? {
         if _rows == nil {
-            parse()
+            do {
+                try parse()
+            } catch {
+                return nil
+            }
         }
-        return _rows!
+        return _rows
     }
     
     /// Parse the file and call a block for each row, passing it as a dictionary
-    public func enumerateAsDict(block: [String: String] -> ()) {
+    public func enumerateAsDict(block: [String: String] -> ()) throws {
         let enumeratedHeader = header.enumerate()
         
-        enumerateAsArray { fields in
+        try enumerateAsArray { fields in
             var dict = [String: String]()
             for (index, head) in enumeratedHeader {
                 dict[head] = index < fields.count ? fields[index] : ""
@@ -29,14 +33,14 @@ extension CSV {
     }
     
     /// Parse the file and call a block on each row, passing it in as a list of fields
-    public func enumerateAsArray(block: [String] -> ()) {
-        self.enumerateAsArray(block, limitTo: nil, startAt: 1)
+    public func enumerateAsArray(block: [String] -> ()) throws {
+        try self.enumerateAsArray(block, limitTo: nil, startAt: 1)
     }
     
-    private func parse() {
+    private func parse() throws {
         var rows = [[String: String]]()
         
-        enumerateAsDict { dict in
+        try enumerateAsDict { dict in
             rows.append(dict)
         }
         _rows = rows

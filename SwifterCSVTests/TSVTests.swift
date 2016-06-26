@@ -12,7 +12,7 @@ class TSVTests: XCTestCase {
     var tsv: CSV!
     
     override func setUp() {
-        tsv = CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
+        tsv = try! CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
     }
     
     func testInit_makesHeader() {
@@ -20,7 +20,7 @@ class TSVTests: XCTestCase {
     }
     
     func testInit_makesRows() {
-        XCTAssertEqual(tsv.rows, [
+        XCTAssertEqual(tsv.rows!, [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]

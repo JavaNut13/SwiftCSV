@@ -6,7 +6,6 @@
 //  Copyright © 2016 JavaNut13. All rights reserved.
 //
 
-
 class Accumulator {
     private var field: [Character]
     private var fields: [String]
@@ -52,22 +51,19 @@ enum State {
     case ParsingFieldInnerQuotes // escaped quotes in a field
     case ParsingQuotes // field with quotes
     case ParsingQuotesInner // escaped quotes in a quoted field
-    case Error(String) // error or something
     
-    func nextState(hook: Accumulator, char: Character) -> State {
+    func nextState(hook: Accumulator, char: Character) throws -> State {
         switch self {
         case Start:
             return stateFromStart(hook, char)
         case .ParsingField:
             return stateFromParsingField(hook, char)
         case .ParsingFieldInnerQuotes:
-            return stateFromParsingFieldInnerQuotes(hook, char)
+            return try stateFromParsingFieldInnerQuotes(hook, char)
         case .ParsingQuotes:
             return stateFromParsingQuotes(hook, char)
         case .ParsingQuotesInner:
-            return stateFromParsingQuotesInner(hook, char)
-        default:
-            return .Error("Unexpected character: \(char)")
+            return try stateFromParsingQuotesInner(hook, char)
         }
     }
 }
@@ -103,12 +99,12 @@ private func stateFromParsingField(hook: Accumulator, _ char: Character) -> Stat
     }
 }
 
-private func stateFromParsingFieldInnerQuotes(hook: Accumulator, _ char: Character) -> State {
+private func stateFromParsingFieldInnerQuotes(hook: Accumulator, _ char: Character) throws -> State {
     if char == "\"" {
         hook.pushCharacter(char)
         return .ParsingField
     } else {
-        return .Error("Can't have non-quote here: \(char)")
+        throw CSVError.UnexpectedCharacter(char)
     }
 }
 
@@ -121,7 +117,7 @@ private func stateFromParsingQuotes(hook: Accumulator, _ char: Character) -> Sta
     }
 }
 
-private func stateFromParsingQuotesInner(hook: Accumulator, _ char: Character) -> State {
+private func stateFromParsingQuotesInner(hook: Accumulator, _ char: Character) throws -> State {
     if char == "\"" {
         hook.pushCharacter(char)
         return .ParsingQuotes
@@ -132,7 +128,7 @@ private func stateFromParsingQuotesInner(hook: Accumulator, _ char: Character) -
         hook.pushRow()
         return .Start
     } else {
-        return .Error("Can't have non-quote here: \(char)")
+        throw CSVError.UnexpectedCharacter(char)
     }
 }
 

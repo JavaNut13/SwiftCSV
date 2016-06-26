@@ -19,7 +19,7 @@ extension CSV {
     public convenience init(name: String, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
         
-        self.init(string: contents, delimiter: delimiter)
+        try self.init(string: contents, delimiter: delimiter)
     }
     
     /// Load a CSV file from a URL
@@ -30,7 +30,7 @@ extension CSV {
     public convenience init(url: NSURL, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         let contents = try String(contentsOfURL: url, encoding: encoding)
         
-        self.init(string: contents, delimiter: delimiter)
+        try self.init(string: contents, delimiter: delimiter)
     }
     
     /// Turn the CSV data into NSData using a given encoding

@@ -19,14 +19,16 @@ public class CSV {
     ///
     /// - string: string data of the CSV file
     /// - delimiter: character to split row and header fields by (default is ',')
-    public init(string: String, delimiter: Character = comma) {
+    ///
+    /// Throws CSVError if CSV file is invalid
+    public init(string: String, delimiter: Character = comma) throws {
         self.text = string
         self.delimiter = delimiter
         
         let createHeader: [String] -> () = { head in
             self.header = head
         }
-        enumerateAsArray(createHeader, limitTo: 1, startAt: 0)
+        try enumerateAsArray(createHeader, limitTo: 1, startAt: 0)
     }
     
     /// Load an existing row dictionary (for exporting)

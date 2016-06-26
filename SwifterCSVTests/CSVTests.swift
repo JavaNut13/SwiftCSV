@@ -12,7 +12,7 @@ class CSVTests: XCTestCase {
     var csv: CSV!
     
     override func setUp() {
-        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
     
     func testInit_makesHeader() {
@@ -20,7 +20,7 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_makesRows() {
-        XCTAssertEqual(csv.rows, [
+        XCTAssertEqual(csv.rows!, [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
@@ -28,8 +28,8 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_whenThereAreIncompleteRows_makesRows() {
-        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
-        XCTAssertEqual(csv.rows, [
+        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
+        XCTAssertEqual(csv.rows!, [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": ""]
@@ -37,8 +37,8 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_whenThereAreCRLFs_makesRows() {
-        csv = CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
-        XCTAssertEqual(csv.rows, [
+        csv = try! CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
+        XCTAssertEqual(csv.rows!, [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
@@ -56,7 +56,7 @@ class CSVTests: XCTestCase {
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
         var index = 0
-        csv.enumerateAsDict { row in
+        try! csv.enumerateAsDict { row in
             XCTAssertEqual(row, expected[index])
             index += 1
         }

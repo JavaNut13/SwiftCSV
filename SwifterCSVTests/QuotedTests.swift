@@ -13,7 +13,7 @@ class QuotedTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        csv = CSV(string: "id,\"name, person\",age\n\"5\",\"Smith, John\",67\n8,Joe Bloggs,\"8\"")
+        csv = try! CSV(string: "id,\"name, person\",age\n\"5\",\"Smith, John\",67\n8,Joe Bloggs,\"8\"")
     }
     
     override func tearDown() {
@@ -26,12 +26,12 @@ class QuotedTests: XCTestCase {
     
     func testQuotedContent() {
         let cols = csv.rows
-        XCTAssertEqual(cols[0], [
+        XCTAssertEqual(cols![0], [
             "id": "5",
             "name, person": "Smith, John",
             "age": "67"
         ])
-        XCTAssertEqual(cols[1], [
+        XCTAssertEqual(cols![1], [
             "id": "8",
             "name, person": "Joe Bloggs",
             "age": "8"

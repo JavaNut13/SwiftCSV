@@ -25,13 +25,13 @@ class QuotedTests: XCTestCase {
     }
     
     func testQuotedContent() {
-        let cols = csv.rows
-        XCTAssertEqual(cols![0], [
+        let cols = try! csv.rows()
+        XCTAssertEqual(cols[0], [
             "id": "5",
             "name, person": "Smith, John",
             "age": "67"
         ])
-        XCTAssertEqual(cols![1], [
+        XCTAssertEqual(cols[1], [
             "id": "8",
             "name, person": "Joe Bloggs",
             "age": "8"

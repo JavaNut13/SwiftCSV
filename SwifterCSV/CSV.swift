@@ -10,6 +10,7 @@ public class CSV {
     static let comma: Character = ","
     
     public var header: [String]!
+    
     var _rows: [[String: String]]? = nil
     
     let text: String
@@ -56,4 +57,8 @@ public class CSV {
         
         load(header: header, rows: rows)
     }
+}
+
+public enum CSVError: ErrorType {
+    case UnexpectedCharacter(Character)
 }

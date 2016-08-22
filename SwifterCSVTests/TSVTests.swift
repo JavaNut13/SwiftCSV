@@ -20,7 +20,7 @@ class TSVTests: XCTestCase {
     }
     
     func testInit_makesRows() {
-        XCTAssertEqual(tsv.rows!, [
+        XCTAssertEqual(try! tsv.rows(), [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]

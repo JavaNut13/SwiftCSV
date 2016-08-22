@@ -104,7 +104,7 @@ private func stateFromParsingFieldInnerQuotes(hook: Accumulator, _ char: Charact
         hook.pushCharacter(char)
         return .ParsingField
     } else {
-        throw CSVError.UnexpectedCharacter(char)
+        throw CSVError.UnexpectedCharacter(expected: "\"", was: char)
     }
 }
 
@@ -128,7 +128,7 @@ private func stateFromParsingQuotesInner(hook: Accumulator, _ char: Character) t
         hook.pushRow()
         return .Start
     } else {
-        throw CSVError.UnexpectedCharacter(char)
+        throw CSVError.ExpectedEndOfField(was: char)
     }
 }
 

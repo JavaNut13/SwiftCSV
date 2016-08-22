@@ -22,9 +22,11 @@ extension CSV {
                 break
             }
             state = try state.nextState(accumulate, char: text[currentIndex])
-        
-            
+
             currentIndex = currentIndex.successor()
+        }
+        if state == .ParsingQuotes || state == .ParsingFieldInnerQuotes {
+            throw CSVError.UnexpectedEOF
         }
         if accumulate.hasContent || (doLimit && accumulate.count < limitTo!) {
             accumulate.pushRow()

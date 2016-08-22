@@ -60,5 +60,7 @@ public class CSV {
 }
 
 public enum CSVError: ErrorType {
-    case UnexpectedCharacter(Character)
+    case UnexpectedCharacter(expected: Character, was: Character)
+    case ExpectedEndOfField(was: Character)
+    case UnexpectedEOF
 }

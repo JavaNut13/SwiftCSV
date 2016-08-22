@@ -23,6 +23,7 @@
 		BE9AA1B61CC3567100128142 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA1AC1CC3563D00128142 /* URLTests.swift */; };
 		BE9AA1B71CC3567400128142 /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE9AA1A81CC3563D00128142 /* empty_fields.csv */; };
 		BE9AA1B81CC3567700128142 /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE9AA1AA1CC3563D00128142 /* quotes.csv */; };
+		BEB738AB1D6AEEC1002E95E4 /* ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB738A91D6AEEBD002E95E4 /* ErrorTests.swift */; };
 		BEBED92F1CC37C70003DB025 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA19B1CC3562900128142 /* CSV.swift */; };
 		BEBED9301CC37C70003DB025 /* CSVWithFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA19C1CC3562900128142 /* CSVWithFoundation.swift */; };
 		BEBED9311CC37C70003DB025 /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA19D1CC3562900128142 /* Description.swift */; };
@@ -66,6 +67,7 @@
 		BE9AA1AA1CC3563D00128142 /* quotes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quotes.csv; path = SwifterCSVTests/quotes.csv; sourceTree = SOURCE_ROOT; };
 		BE9AA1AB1CC3563D00128142 /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TSVTests.swift; path = SwifterCSVTests/TSVTests.swift; sourceTree = SOURCE_ROOT; };
 		BE9AA1AC1CC3563D00128142 /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLTests.swift; path = SwifterCSVTests/URLTests.swift; sourceTree = SOURCE_ROOT; };
+		BEB738A91D6AEEBD002E95E4 /* ErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorTests.swift; path = SwifterCSVTests/ErrorTests.swift; sourceTree = SOURCE_ROOT; };
 		BEBED9371CC37DD4003DB025 /* ImportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportTests.swift; path = SwifterCSVTests/ImportTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 				BE9AA1AC1CC3563D00128142 /* URLTests.swift */,
 				BE06B67E1CB72680009578CC /* Res */,
 				BE54BAB71CD6CB730075D3DD /* ExportTests.swift */,
+				BEB738A91D6AEEBD002E95E4 /* ErrorTests.swift */,
 			);
 			name = SwifterCSVTests;
 			path = SwiftCSVTests;
@@ -277,6 +280,7 @@
 				BEBED9331CC37C70003DB025 /* ParserHelpers.swift in Sources */,
 				BE9AA1B31CC3566600128142 /* CSVTests.swift in Sources */,
 				BE9AA1B51CC3566D00128142 /* TSVTests.swift in Sources */,
+				BEB738AB1D6AEEC1002E95E4 /* ErrorTests.swift in Sources */,
 				BEBED9341CC37C70003DB025 /* StateMachine.swift in Sources */,
 				BEBED92F1CC37C70003DB025 /* CSV.swift in Sources */,
 				BE93EC911CCA345B0023B86C /* Import.swift in Sources */,
